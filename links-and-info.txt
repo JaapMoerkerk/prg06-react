@@ -1,0 +1,6 @@
+Webservice school:
+https://docent.cmi.hro.nl/bootb/demo/notes/
+
+Example app Antwan:
+https://hr-cmgt.github.io/prg06-vite-react-antwan/
+
