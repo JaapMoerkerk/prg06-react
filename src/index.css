@@ -23,12 +23,34 @@ code {
   flex-direction: row;
 }
 
-/*Home/App.js styling*/
-.home-container h1{
-  text-align: center;
-  text-shadow: grey 1px 1px;
-  font-weight: normal;
+/*Header/navbar*/
+.nav-btn{
+  color: #0354e7;
+  margin: 10px;
+  border: none;
+  font-size: 1.3em;
+  background: none;
+  cursor: pointer;
+}
+
+header{
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title{
+  color: #0354e7;
+  font-weight: lighter;
   letter-spacing: 4px;
+}
+
+/*Home/App.js styling*/
+.home-container h2{
+  margin: auto;
+  color: #0354e7;
+  font-weight: bold;
+  letter-spacing: 3px;
+  font-size: 1.8em;
 }
 
 .card{
@@ -39,13 +61,15 @@ code {
   border-radius: 20px;
 }
 
-h2{
+h3{
   color: #0354e7;
+  font-size: 1.4em;
+  transition: 0.3s ease;
 }
 
-.card:hover h2{
+.card:hover h3{
   color: white;
-  transition: 0.3s ease;
+
 }
 
 .card:hover{
@@ -69,7 +93,13 @@ h2{
   align-items: center;
 }
 
-/*Buttons*/
+.card-button-container{
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 3vh 10px;
+}
+
+/*GLOBAL Buttons*/
 .prim-btn{
   background-color: white;
   color: #0354e7;
@@ -83,6 +113,28 @@ h2{
 .prim-btn:hover{
   background-color: #0354e7;
   color: white;
+}
+
+.edit-btn, .delete-btn{
+  font-size: 1.3em;
+  padding: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+}
+
+.edit-btn{
+  background: white;
+  color: #0354e7;
+  border: #0354e7 2px solid;
+}
+
+.delete-btn{
+  background: red;
+  color: white;
+  border: red 2px solid;
 }
 
 .add-btn{
@@ -107,6 +159,7 @@ h2{
   padding: 1vh 2vw 3vh 2vw;
   background-color: white;
   border-radius: 8px;
+  min-width: 20vw;
 
 }
 
@@ -114,6 +167,7 @@ h2{
   font-size: 1.5rem;
   font-weight: bold;
   margin-bottom: 10px;
+  color: #0354e7;
 }
 
 .modal-input {
@@ -143,3 +197,20 @@ input, textarea{
   max-width: 30vw;
 }
 
+/*Detail page*/
+.detail-container span{
+  font-weight: lighter;
+}
+
+.detail-button-container{
+  justify-content: left;
+}
+
+.detail-btn{
+  font-size: 1.3em;
+  margin-right: 20px;
+}
+
+.detail-container h2{
+  color: #0354e7;
+}

@@ -7,7 +7,13 @@ const Header = () => {
         <header className="row">
             <h1 className="title">React Tailwind PRG6 - Jaap Moerkerk</h1>
             <nav>
-                {/*<a><Link to={"/"}</a>*/}
+                <Link to={`/`}>
+                    <button className="nav-btn">Home</button>
+                </Link>
+
+                <Link to={`/about`}>
+                    <button className="nav-btn">About</button>
+                </Link>
             </nav>
         </header>
     );

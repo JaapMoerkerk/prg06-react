@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 import './index.css';
+
+
 const API_URL = 'https://docent.cmi.hro.nl/bootb/demo/notes/';
 
 function App() {
@@ -11,6 +14,7 @@ function App() {
     //Modal form state
     const [newItemTitle, setNewItemTitle] = useState("");
     const [newItemBody, setNewItemBody] = useState("");
+    const [newItemAuthor, setNewItemAuthor] = useState("");
 
     const fetchData = async () => {
         try {
@@ -38,7 +42,7 @@ function App() {
         }
     };
 
-    const handleAddItem = async () =>{
+    const handleAddItem = async () => {
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',
@@ -49,6 +53,7 @@ function App() {
                 body: JSON.stringify({
                     title: newItemTitle,
                     body: newItemBody,
+                    author: newItemAuthor
                 }),
             });
 
@@ -60,10 +65,11 @@ function App() {
                 setShowAddModal(false);
                 setNewItemBody("");
                 setNewItemTitle("");
-            } else{
+                setNewItemAuthor("");
+            } else {
                 console.error("Error adding new item:", response.statusText);
             }
-        } catch (error){
+        } catch (error) {
             console.error("Error adding new item:", error);
         }
     };
@@ -79,16 +85,22 @@ function App() {
                 Add A New Item
             </button>
 
+            <h2 className="items-title">Existing Items</h2>
+
             {/* Display a card for each item */}
             <div className="row card-container">
-            {data.map(item => (
-                <div key={item.id} className="card">
-                    <h2 className="text-xl font-bold">{item.title}</h2>
-                    <p>ID: {item.id}</p>
-                    <p>{item.body}</p>
-                    <p>Date: {item.date}</p>
-                </div>
-            ))}
+                {data.map(item => (
+                    <div key={item.id} className="card">
+                        <h3 className="">{item.title} (#{item.id})</h3>
+                        <p>ID: {item.id}</p>
+                        <div className="row card-button-container">
+                            <Link to={`/details/${item.id}`}>
+                                <button className="edit-btn">Details</button>
+                            </Link>
+                            <button className="delete-btn">Delete</button>
+                        </div>
+                    </div>
+                ))}
             </div>
 
             {/* Pagination controls */}
@@ -117,7 +129,7 @@ function App() {
             {showAddModal && (
                 <div className="modal-container">
                     <div className="modal">
-                        <h2 className="modal-title">Add A New Item</h2>
+                        <h3 className="modal-title">Add A New Item</h3>
                         <form>
                             <div className="modal-input">
                                 <label htmlFor="newItemTitle">Title:</label>
@@ -134,6 +146,14 @@ function App() {
                                     id="newItemBody"
                                     value={newItemBody}
                                     onChange={(e) => setNewItemBody(e.target.value)}
+                                />
+                            </div>
+                            <div className="modal-input">
+                                <label htmlFor="newItemAuthor">Author:</label>
+                                <textarea
+                                    id="newItemAuthor"
+                                    value={newItemAuthor}
+                                    onChange={(e) => setNewItemAuthor(e.target.value)}
                                 />
                             </div>
                             <div className="modal-buttons">
