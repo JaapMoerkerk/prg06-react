@@ -9,6 +9,7 @@ const Detail = () => {
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [editedItemTitle, setEditedItemTitle] = useState("");
     const [editedItemBody, setEditedItemBody] = useState("");
+    const [editedItemAuthor, setEditedItemAuthor] =useState("");
 
 
     const fetchItemDetails = async () => {
@@ -33,6 +34,7 @@ const Detail = () => {
         // Open the edit modal with current item details
         setEditedItemTitle(itemDetails.title);
         setEditedItemBody(itemDetails.body);
+        setEditedItemAuthor(itemDetails.author);
         setEditModalOpen(true);
     };
 
@@ -44,11 +46,12 @@ const Detail = () => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'access-control-allow-origin': '*',
+                    // 'access-control-allow-origin': '*',
                 },
                 body: JSON.stringify({
                     title: editedItemTitle,
-                    body: editedItemBody
+                    body: editedItemBody,
+                    author: editedItemAuthor
                 }),
             });
 
@@ -106,6 +109,14 @@ const Detail = () => {
                                     id="editedItemBody"
                                     value={editedItemBody}
                                     onChange={(e) => setEditedItemBody(e.target.value)}
+                                />
+                            </div>
+                            <div className="modal-input">
+                                <label htmlFor="editedItemAuthor">Author:</label>
+                                <textarea
+                                    id="editedItemAuthor"
+                                    value={editedItemAuthor}
+                                    onChange={(e) => setEditedItemAuthor(e.target.value)}
                                 />
                             </div>
                             <div className="modal-buttons">

@@ -74,6 +74,26 @@ function App() {
         }
     };
 
+    const handleDeleteItem = async (itemId) => {
+        try {
+            const response = await fetch(`${API_URL}${itemId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json'
+                },
+            });
+
+            if (response.ok) {
+                // Refresh data after deletion
+                fetchData();
+            } else {
+                console.error("Error deleting item:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Error deleting item:", error);
+        }
+    };
+
     return (
         <div className="column home-container">
 
@@ -97,7 +117,10 @@ function App() {
                             <Link to={`/details/${item.id}`}>
                                 <button className="edit-btn">Details</button>
                             </Link>
-                            <button className="delete-btn">Delete</button>
+                            <button
+                                className="delete-btn"
+                                onClick={() => handleDeleteItem(item.id)}
+                            >Delete</button>
                         </div>
                     </div>
                 ))}
