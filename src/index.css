@@ -45,7 +45,7 @@ header{
 }
 
 /*Home/App.js styling*/
-.home-container h2{
+h2{
   margin: auto;
   color: #0354e7;
   font-weight: bold;
@@ -101,6 +101,7 @@ h3{
 
 /*GLOBAL Buttons*/
 .prim-btn{
+  font-size: 1.5em;
   background-color: white;
   color: #0354e7;
   padding: 10px;
@@ -198,6 +199,12 @@ input, textarea{
 }
 
 /*Detail page*/
+.detail-container{
+  min-height: 30vh;
+  align-items: baseline;
+  text-align: left;
+}
+
 .detail-container span{
   font-weight: lighter;
 }

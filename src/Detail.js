@@ -40,9 +40,11 @@ const Detail = () => {
         try {
             const response = await fetch(`https://docent.cmi.hro.nl/bootb/demo/notes/${itemId}`, {
                 method: 'PUT', // Use PUT method for updating
+                mode: "cors",
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'access-control-allow-origin': '*',
                 },
                 body: JSON.stringify({
                     title: editedItemTitle,
