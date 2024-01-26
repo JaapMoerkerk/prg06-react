@@ -4,6 +4,7 @@ import './index.css';
 
 
 const API_URL = 'https://docent.cmi.hro.nl/bootb/demo/notes/';
+const ITEMS_PER_PAGE = 9;
 
 function App() {
     const [data, setData] = useState([]);
@@ -18,11 +19,24 @@ function App() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch(`${API_URL}?page=${currentPage}`, {
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+            let response;
+
+            // Fetch only the first 9 items for the first page
+            if (currentPage === 1) {
+                response = await fetch(`${API_URL}?page=1&limit=${ITEMS_PER_PAGE}`, {
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+            } else {
+                // Fetch all items for subsequent pages
+                response = await fetch(`${API_URL}?page=${currentPage}`, {
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+            }
+
             const jsonData = await response.json();
             setData(jsonData.items);
             setTotalPages(jsonData.pagination.totalPages);
@@ -128,24 +142,13 @@ function App() {
 
             {/* Pagination controls */}
             <div className="row pagination-container">
-                <button
-                    onClick={() => goToPage(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    className="prim-btn"
-                >
-                    Previous Page
-                </button>
-
-                <p className="amount-of-pages">
-                    Page {currentPage} of {totalPages}
-                </p>
 
                 <button
                     onClick={() => goToPage(currentPage + 1)}
                     disabled={currentPage === totalPages}
                     className="prim-btn"
                 >
-                    Next Page
+                    Meer laden
                 </button>
             </div>
 
